@@ -195,8 +195,8 @@ if __name__=="__main__":
         start=time.time()
         if leiji.shape[0]>20:
             end3=time.time()
-            leiji=leiji[-20:,:].copy()  # 前4s的数据
-            nowTime = leiji[-1, -1]  # 最新的数据的时间戳
+            leiji=leiji[-20:,:].copy()
+            nowTime = leiji[-1, -1]
             # rawdata=leiji[-20:,49:-12].copy()
             rawdata = leiji[-20:, 49:-32].copy() #测到4.8
             meandata = np.mean(rawdata, axis=0)

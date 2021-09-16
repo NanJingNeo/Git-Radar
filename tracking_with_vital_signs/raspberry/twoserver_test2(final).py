@@ -434,7 +434,7 @@ while 1:
                         km_y2.z = np.array([y2_e])
                         km_y2.kf_update()
                         y2_p = km_y2.x[0, 0]
-                        if x2_p < -2.1 or x2_p > 2.1:
+                        if x2_p < -2.1 or x2_p > 2.1: #边界限制
                             x2_p = x2_e
                         if y2_p < -0.6 or y2_p > 3.6:
                             y2_p = y2_e

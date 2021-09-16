@@ -173,7 +173,7 @@ if __name__=="__main__":
     mpl.rcParams['font.sans-serif'] = ['SimHei']
     eng.addpath('./ml')
     plt.ion()
-    com = 'COM3'
+    com = 'COM11'
 
     leiji = np.zeros((1, 751))#新雷达数据格式：747+1
     M = 10

@@ -7,12 +7,12 @@ class Kalman:
         self.z = 0
         self.P = np.zeros((2, 2))
         self.x = np.transpose(np.array([xx, vv]))#(2,1)
-        self.x = np.reshape(self.x,[2,1])
+        self.x=np.reshape(self.x,[2,1])
 
         self.A = np.array([[1, 0.2], [0, 1]])
         self.Q = np.array([[0.02, 0], [0, 0.04]])
         self.H = np.array([1, 0])  # (1,2)
-        self.H = np.reshape(self.H,[1,2])
+        self.H=np.reshape(self.H,[1,2])
         self.R = np.array([4])
 
     def kf_update(self):

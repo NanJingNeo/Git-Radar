@@ -8,7 +8,6 @@ from dl_gj_withbug import *
 from pylab import *
 import threading
 
-########radar()函数只是为了获取数据，并没有更多功能########
 def radar(com):
     global leiji
     with create_mc(com) as mc:
@@ -100,12 +99,16 @@ if __name__=="__main__":
     plt.ion()
     com = 'COM16'
 
-    leiji = np.zeros((1, 750))      #leiji为全局变量
-    M = 10      #行前截10
-    L = 50      #列后截50
+    leiji = np.zeros((1, 750))
+    M = 10
+    L = 50
     hr_list1 = []
     tmp_hr1 = 0
     tmp_hr2 = 0
+
+    #这里需要修改
+    ls1 = 4.26 #13
+    ls2 = 0.95 #37
 
     t=threading.Thread(name='UWB',target=radar,args=(com,))
     t.start()
@@ -119,6 +122,7 @@ if __name__=="__main__":
             PureData1 = pca_filter.p_f(RawData1, M, L)
 
             # 双人
+            # peaks1_list, peaks2_list, tops1_list, tops2_list, ls1, ls2 = gj(PureData1, RawData1, M, L, ls1, ls2)
             peaks1_list, peaks2_list, tops1_list, tops2_list= gj(PureData1, RawData1, M, L)
 
             hr_l1 = []
@@ -126,10 +130,10 @@ if __name__=="__main__":
             lasthr1 = -1
             lasthr2 = -1
 
-            for i in range(len(peaks1_list)):   #len()为二维数组的行数
+            for i in range(len(peaks1_list)):
                 if len(peaks1_list[i]) > 20:
 
-                    peaks1_tmp = peaks1_list[i] #每次取一行数据
+                    peaks1_tmp = peaks1_list[i]
                     peaks2_tmp = peaks2_list[i]
                     tops1_tmp = tops1_list[i]
                     tops2_tmp = tops2_list[i]
@@ -138,7 +142,7 @@ if __name__=="__main__":
                     peaks1_tmp = matlab.double(peaks1_tmp)
                     tops2_tmp = matlab.double(tops2_tmp)
                     peaks2_tmp = matlab.double(peaks2_tmp)
-                    br1, hr1 = eng.respiration_multi2_vncmd_1(tops1_tmp, peaks1_tmp, nargout=2)     #调用的matlab函数，在.ml文件夹里，输入一行数据，返回的应该是一个数值
+                    br1, hr1 = eng.respiration_multi2_vncmd_1(tops1_tmp, peaks1_tmp, nargout=2)
                     br2, hr2 = eng.respiration_multi2_vncmd_1(tops2_tmp, peaks2_tmp, nargout=2)
 
                     if lasthr1 == -1:
