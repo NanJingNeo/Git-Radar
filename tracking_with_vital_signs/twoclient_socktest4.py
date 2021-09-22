@@ -3,7 +3,7 @@ from __future__ import print_function
 from pymoduleconnector import create_mc
 import pca_filter
 import numpy as np
-import matlab.engine
+# import matlab.engine
 from dl_gj import *
 from pylab import *
 import threading
@@ -99,12 +99,12 @@ def radar(com):
             return frame
 
         def get_data():
-            save = np.ones((1, 751))
+            save = np.ones((1, 748))
 
             for jj in range(1):
                 frame2 = read_frame()
 
-                save[jj, 0:750] = frame2 #新雷达数据格式：747+1
+                save[jj, 0:747] = frame2 #新雷达数据格式：747+1
                 ll2 = time.asctime(time.localtime(time.time()))
 
                 ll21 = ll2[11:13]
@@ -119,6 +119,7 @@ def radar(com):
 
         while 1:
             save = get_data()
+            # print(save.shape)
             leiji = np.vstack((leiji, save))
             sleep(0.005)
 
@@ -168,14 +169,14 @@ if __name__=="__main__":
     BUFSIZ = 16
     ADDR = (HOST, PORT)
 
-    frame_gen = sio.loadmat('frame_gen.mat')['frame_gen']
-    eng = matlab.engine.start_matlab()
-    mpl.rcParams['font.sans-serif'] = ['SimHei']
-    eng.addpath('./ml')
-    plt.ion()
-    com = 'COM11'
+    # frame_gen = sio.loadmat('frame_gen.mat')['frame_gen']
+    # eng = matlab.engine.start_matlab()
+    # mpl.rcParams['font.sans-serif'] = ['SimHei']
+    # eng.addpath('./ml')
+    # plt.ion()
+    com = 'COM3'
 
-    leiji = np.zeros((1, 751))#新雷达数据格式：747+1
+    leiji = np.zeros((1, 748))#新雷达数据格式：747+1
     M = 10
     L = 50
     data=dict()

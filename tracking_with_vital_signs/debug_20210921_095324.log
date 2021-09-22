@@ -1,0 +1,9 @@
+0.146354 : GetOverlappedResult return error: The I/O operation has been aborted because of either a thread exit or an application request.
+
+0.189424 : do_single_read failed
+
+0.190424 : io_read() returned negative: 
+
+0.190424 : Reader is bailing out
+
+2.010499 : Timeout waiting for response

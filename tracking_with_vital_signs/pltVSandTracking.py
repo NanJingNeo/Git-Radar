@@ -24,6 +24,7 @@ def oximeter(port_oximeter):
     logger.info('oximeter is ready.')
     inputs = [tcpCliSock3, ]
     while 1:
+        time.sleep(0.005)
         r_list, w_list, e_list = select.select(inputs, [], [],0.005)
         for event in r_list:
             if event == tcpCliSock3:
@@ -31,7 +32,7 @@ def oximeter(port_oximeter):
                 inputs=[tcpCliSock3,new_sock,]
             else:
                 data = event.recv(1024)
-                # logger.info(data)
+                logger.info(data)
                 if data!=b'' and data!=b'socket connected':
                     # logger.info(data)
                     oximeter_result=data.split()
@@ -88,7 +89,7 @@ if __name__=='__main__':
                 load_trk = json.load(load_f)
             load_f.close()
 
-            logger.info(load_trk)
+            #logger.info(load_trk)
         except:
             print('load wrong')
         # print(load_hr["1"])
@@ -160,7 +161,7 @@ if __name__=='__main__':
         plt.axis([0, 3, 0, 3])
 
         end = time.perf_counter()
-        logger.info(str(end - start) + 'lalala')
+        #logger.info(str(end - start) + 'lalala')
         plt.show()
         plt.pause(0.005)
         time.sleep(0.35)

@@ -1,0 +1,13 @@
+0.003486 : Error creating file
+
+0.050332 : ReadFile returned error: The handle is invalid.
+
+0.050332 : do_single_read failed
+
+0.051331 : io_read() returned negative: 
+
+0.052326 : Reader is bailing out
+
+0.053324 : call to WriteFile failed -- closing file -- The handle is invalid.
+
+0.053324 : Failed to write all bytes to module, expected bytes written: 5, actual bytes written: 0

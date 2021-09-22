@@ -6,6 +6,7 @@ from time import sleep
 import matlab.engine
 eng = matlab.engine.start_matlab()
 eng.addpath('./ml')
+print('Matlab start.')
 from pylab import *
 import threading
 mpl.rcParams['font.sans-serif'] = ['SimHei']
@@ -34,9 +35,11 @@ while 1:
         hr_l2 = []
         lasthr1 = -1
         lasthr2 = -1
+        # print(23)
 
         for i in range(len(peaks1_list)):
             if len(peaks1_list[i]) > 20:
+                # print(len(peaks1_list[i]))
                 tmp_tops1_list=matlab.double(tops1_list[i])
                 tmp_peaks1_list=matlab.double(peaks1_list[i])
                 tmp_tops2_list= matlab.double(tops2_list[i])
